@@ -92,7 +92,7 @@ export default {
 
 <style>
 .project.complete {
-    border-left: 4px solid #3cd1c2;
+    border-left: 4px solid #145e56;
 }
 .project.ongoing {
     border-left: 4px solid #ddbd2e;
@@ -101,7 +101,7 @@ export default {
     border-left: 4px solid #98c715;
 }
 .v-chip.complete {
-    background: #3cd1c2;
+    background: #145e56;
 }
 .v-chip.ongoing {
     background: #ddbd2e;
