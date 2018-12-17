@@ -1,5 +1,3 @@
-/* eslint-disable */
-import func from './vue-temp/vue-editor-bridge';
 <template>
   <div class="dashboard">
     <h1 class="subheading grey--text">데시보드</h1>
