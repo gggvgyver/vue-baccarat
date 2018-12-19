@@ -45,45 +45,32 @@
 </template>
 
 <script>
+import db from '@/fb'
+
 export default {
     data() {
         return {
-            projects: [
-                {
-                    title: '타이틀1',
-                    person: '사람1',
-                    due: '기간',
-                    status: 'ongoing',
-                    content: '내용',
-                },
-                {
-                    title: '타이틀2',
-                    person: '사람2',
-                    due: '기간',
-                    status: 'complete',
-                    content: '내용',
-                },
-                {
-                    title: '타이틀3',
-                    person: 'a사람3',
-                    due: '기간',
-                    status: 'ongoing',
-                    content: '내용',
-                },
-                {
-                    title: 'a이틀4',
-                    person: '사람4',
-                    due: '기간',
-                    status: 'overdue',
-                    content: '내용',
-                },
-            ],
+            projects: [],
         }
     },
     methods: {
         sortBy(prop) {
             this.projects.sort((a, b) => (a[prop] < b[prop] ? -1 : 1))
         },
+    },
+    created() {
+        db.collection('projects').onSnapshot(res => {
+            const changes = res.docChanges()
+
+            changes.forEach(change => {
+                if (change.type === 'added') {
+                    this.projects.push({
+                        ...change.doc.data(),
+                        id: change.doc.id,
+                    })
+                }
+            })
+        })
     },
 }
 </script>

@@ -1,5 +1,10 @@
 <template>
   <nav>
+    <v-snackbar v-model="snackbar" :timeout="4000" top color="success">
+      <span>새로운 프로젝트가 추가 되었습니다</span>
+      <v-btn flat color="white" @click="snackbar = false">닫기</v-btn>
+    </v-snackbar>
+
     <v-toolbar flat app>
       <v-toolbar-side-icon @click="drawer=!drawer"></v-toolbar-side-icon>
       <v-toolbar-title>
@@ -34,7 +39,7 @@
           <p class="white--text subheading mt-1">별이아빠 181218</p>
         </v-flex>
         <v-flex class="mt-4 mb-3">
-          <Popup/>
+          <Popup @projectAdded="snackbar=true"/>
         </v-flex>
       </v-layout>
 
@@ -64,6 +69,7 @@ export default {
                 {icon: 'folder', text: 'Projects', route: '/projects'},
                 {icon: 'person', text: 'Team', route: '/team'},
             ],
+            snackbar: false,
         }
     },
 }
